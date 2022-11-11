@@ -1,9 +1,24 @@
-import React from 'react'
+import React from "react";
+import Styles from "../Styles/Page-Styles/Landing/Landing.module.css";
+
+import useAxios from "../Hook/useAxios";
 
 const Landing = () => {
-  return (
-    <div>Landing</div>
-  )
-}
+  const url = `https://jsonplaceholder.typicode.com/users`;
+  const { data, loading, error } = useAxios(url);
 
-export default Landing
+  return (
+    <div>
+      <div className={Styles.Content_Container}>
+        {data &&
+          data.map((item) => {
+            return <div className={Styles.Card} key={item.id}>
+              
+            </div>;
+          })}
+      </div>
+    </div>
+  );
+};
+
+export default Landing;
